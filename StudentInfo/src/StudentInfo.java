@@ -13,14 +13,14 @@ public class StudentInfo {
 
 		do {
 
-			System.out.println("ÇÐ»ýÁ¤º¸½Ã½ºÅÛÀÔ´Ï´Ù");
-			System.out.println("¹øÈ£¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+			System.out.println("학생 정보 시스템입니다");
+			System.out.println("번호를 입력해주세요");
 			System.out.println("--------------");
 			System.out.println("1. Add");
-			System.out.println("2. Update");
-			System.out.println("3. Delete");
+			System.out.println("2. Delete");
+			System.out.println("3. update");
 			System.out.println("4. View");
-			System.out.println("5. Á¾·á");
+			System.out.println("5. exit");
 			System.out.println("--------------");
 
 			input = sc.nextInt();
@@ -86,7 +86,7 @@ public class StudentAdd {
         stu = scan.nextLine();
         int lastLine =0;
         
-        FileWriter f_writer = new FileWriter("test.txt",true);
+        FileWriter f_writer = new FileWriter("studentinfomation.txt",true);
         BufferedWriter b_writer = new BufferedWriter(f_writer,1024);
         b_writer.write(stu);
         b_writer.write("\n");
@@ -98,7 +98,7 @@ public class StudentAdd {
         
         System.out.println("파일 읽기 결과");
         
-        FileReader f_reader2 = new FileReader("test.txt");
+        FileReader f_reader2 = new FileReader("studentinfomation.txt");
         BufferedReader b_reader2 = new BufferedReader(f_reader2,1024);
         for(int j =0 ; j < 10 ; j++){
             stu= b_reader2.readLine();
@@ -118,7 +118,7 @@ class StudentDelete {
 
 		try {
 
-			FileReader fr = new FileReader(filepath);
+			FileReader fr = new FileReader("studentinfomation.txt");
 			String temp = "";
 
 			BufferedReader br = new BufferedReader(fr);
@@ -140,7 +140,7 @@ class StudentDelete {
 				temp += (line + "\r\n"); 
 			}
 
-			FileWriter fw = new FileWriter(filepath);
+			FileWriter fw = new FileWriter("studentinfomation.txt");
 			fw.write(temp);
 
 			fw.close();
@@ -177,7 +177,7 @@ public class StudentUpdate {
 
 		try {
 
-			ra = new RandomAccessFile("C:/project/workspace/hi.txt.txt","rw");
+			ra = new RandomAccessFile("studentinfomation.txt","rw");
 			String temp;
 			int i;
 			for (i = 0; i < s_pos; i++) {
@@ -231,7 +231,7 @@ public class StudentView {
             
             FileReader f_reader = null;
             try {
-                f_reader= new FileReader("test.txt");
+                f_reader= new FileReader("studentinfomation.txt");
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -269,7 +269,7 @@ class Position{
 
 			String s;
 
-			FileReader fr = new FileReader("filepath"); //학생정보파일 경로 추가해줘 
+			FileReader fr = new FileReader("studentinfomation.txt"); //학생정보파일 경로 추가해줘 
 			BufferedReader br = new BufferedReader(fr);
 			LineNumberReader line = new LineNumberReader(br);
 
