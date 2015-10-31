@@ -4,7 +4,7 @@ import java.io.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.io.Fi
+import java.io.Fi;
 
 
 public class StudentInfo {
@@ -77,6 +77,50 @@ public class StudentAdd {
     
 }
 
+class StudentDelete {
+
+	public void delStudent(int id){
+
+
+		try {
+
+			FileReader fr = new FileReader(filepath);
+			String temp = "";
+
+			BufferedReader br = new BufferedReader(fr);
+
+			String line;
+			int linenumber;
+			Postion pos = new Position();
+			linenumber = pos.position(id);
+
+			for(int i=1; i<linenumber; i++) {
+				line = br.readLine();
+				temp += (line + "\r\n");
+
+			}
+
+			String delData = br.readLine();
+
+			while((line = br.readLine()) != null) {
+				temp += (line + "\r\n"); 
+			}
+
+			FileWriter fw = new FileWriter(filepath);
+			fw.write(temp);
+
+			fw.close();
+			br.close();
+		
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		
+		}
+	}
+
+}
+
 
 
 class WhatIsInput {
@@ -92,6 +136,10 @@ class WhatIsInput {
             }
             case 2: {
                 StudentDelete sd = new StudentDelete();
+                Scanner s = new Scanner(System.in);
+                System.out.println("삭제할 학생의 학번입력 : ");                
+                int id = s.nextInt();
+                sd.delStudent(id);			
 			break;
 
 		}
