@@ -1,9 +1,11 @@
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.io.FileWriter;
+import java.io.Fi
+
 
 public class StudentInfo {
 
@@ -40,6 +42,7 @@ public class StudentInfo {
 
 public class StudentAdd {
     
+  
     
     public void addStudent() throws IOException{
         
@@ -74,39 +77,7 @@ public class StudentAdd {
     
 }
 
-public class StudentInfo {
-    
-    public static void main(String args[]) throws IOException {
-        
-        int input;
-        Scanner sc = new Scanner(System.in);
-        
-        
-        do {
-            
-            System.out.println("«–ª˝¡§∫∏Ω√Ω∫≈€¿‘¥œ¥Ÿ");
-            System.out.println("π¯»£∏¶ ¿‘∑¬«ÿ ¡÷ººø‰");
-            System.out.println("--------------");
-            System.out.println("1. Add");
-            System.out.println("2. Update");
-            System.out.println("3. Delete");
-            System.out.println("4. View");
-            System.out.println("5. ¡æ∑·");
-            System.out.println("--------------");
-            
-            input = sc.nextInt();
-            
-            if (input != 5) {
-                
-                WhatIsInput ip = new WhatIsInput();
-                ip.goSystem(input);
-            }
-            
-        } while (input != 5);
-        
-    }
-    
-}
+
 
 class WhatIsInput {
     
@@ -143,7 +114,7 @@ class WhatIsInput {
 	}
 }
 
-class Position {
+class Position{
 
 	public int position(int id){
 
@@ -178,7 +149,5 @@ class Position {
 		return linenumber;
 	}
 }
-
-
 
 
