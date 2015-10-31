@@ -102,6 +102,7 @@ class WhatIsInput {
 		}
 		case 4: {
 			StudentView sv = new StudentView();
+            sv.ViewStudent();
 			break;
 		}
 		default: {
@@ -149,6 +150,47 @@ class Position{
 		return linenumber;
 	}
 }
+
+    public class StudentView {
+        
+        
+        Scanner scan = new Scanner(System.in);
+        
+        public void ViewStudent(){
+            System.out.println("ID를 입력하세요!");
+            int ID = scan.nextInt();
+            pos posi = new pos();
+            int loc = posi.position(ID);
+            
+            String stu = null;
+            
+            FileReader f_reader = null;
+            try {
+                f_reader= new FileReader("test.txt");
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            BufferedReader b_reader = new BufferedReader(f_reader,1024);
+            int i=1;
+            
+            while(true){
+                try {
+                    stu = b_reader.readLine();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if(i == loc){
+                    System.out.println(String.valueOf(stu));
+                    break;
+                }
+                i++;
+            }
+            
+            
+        }
+    }
 
 
 
