@@ -13,7 +13,7 @@ public class StudentAdd {
         
         Scanner scan = new Scanner(System.in);
         String stu;
-        System.out.println("학생 정보 입력");
+        System.out.println("학생 정보 입력하세요");
         stu = scan.nextLine();
         int lastLine =0;
         
