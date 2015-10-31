@@ -1,4 +1,4 @@
-import java.io.IOException;
+﻿import java.io.IOException;
 import java.util.Scanner;
 import java.io.*;
 import java.io.BufferedReader;
@@ -39,6 +39,42 @@ public class StudentInfo {
 
 	}
 
+class WhatIsInput {
+    
+    public void goSystem(int input) {
+        
+        switch (input) {
+                
+            case 1: {
+                StudentAdd sa = new StudentAdd();
+                sa.addStudent();
+                break;
+            }
+            case 2: {
+                StudentDelete sd = new StudentDelete();
+			break;
+
+		}
+		case 3: {
+			StudentUpdate su = new StudentUpdate();
+			su.update();
+			break;
+		}
+		case 4: {
+			StudentView sv = new StudentView();
+			break;
+		}
+		default: {
+			break;
+
+		}
+
+		}
+
+	}
+}
+
+
 
 public class StudentAdd {
     
@@ -77,42 +113,65 @@ public class StudentAdd {
     
 }
 
+public class StudentUpdate {
 
+	public int s_pos;
 
-class WhatIsInput {
-    
-    public void goSystem(int input) {
-        
-        switch (input) {
-                
-            case 1: {
-                StudentAdd sa = new StudentAdd();
-                sa.addStudent();
-                break;
-            }
-            case 2: {
-                StudentDelete sd = new StudentDelete();
-			break;
+	public void update() {
 
-		}
-		case 3: {
-			StudentUpdate su = new StudentUpdate();
-			su.update();
-			break;
-		}
-		case 4: {
-			StudentView sv = new StudentView();
-			break;
-		}
-		default: {
-			break;
+		Scanner sc = new Scanner(System.in);
 
-		}
+		System.out.println("수정할 학생의 학번을 입력해주세요");
+		int id = sc.nextInt();
 
+		s_pos = position(id);
+	
+		long pos;
+		long pos_before;
+		RandomAccessFile ra;
+
+		try {
+
+			ra = new RandomAccessFile("C:/project/workspace/hi.txt.txt","rw");
+			String temp;
+			int i;
+			for (i = 0; i < s_pos; i++) {
+				System.out.println(ra.readLine()); // 읽으며 이동
+			}
+			pos_before = ra.getFilePointer();
+			System.out.println("pos"+pos_before);
+
+			String phone;
+			String line;
+
+			line = ra.readLine();
+			int len = line.length();
+			phone = line.split("\t")[3];
+
+			System.out.println("현재번호는 :" + phone);
+			System.out.println("정말 번호를 바꾸시겠습니까?(Y/N)");
+			String ans = sc.next();
+			if (ans.equals("y")) {
+				System.out.println("번호를 입력하세요");
+				phone = sc.next();
+				ra.seek(pos_before+len-11);
+				ra.writeBytes(phone);
+				
+
+			}
+			
+			ra.close();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
+
 }
+
+
 
 class Position{
 
