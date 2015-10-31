@@ -48,22 +48,24 @@ class WhatIsInput {
             }
             case 2: {
                 StudentDelete sd = new StudentDelete();
-			break;
-
-		}
-		case 3: {
-			StudentUpdate su = new StudentUpdate();
-			su.update();
-			break;
-		}
-		case 4: {
-			StudentView sv = new StudentView();
-			break;
-		}
-		default: {
-			break;
-
-		}
+                Scanner s = new Scanner(System.in);
+                System.out.println("삭제할 학생의 학번입력 : ");                
+                int id = s.nextInt();
+                sd.delStudent(id);	                
+				break;
+			}
+			case 3: {
+				StudentUpdate su = new StudentUpdate();
+				su.update();
+				break;
+			}
+			case 4: {
+				StudentView sv = new StudentView();
+	            sv.ViewStudent();
+				break;
+			}
+			default: {
+				break;
 
 		}
 
@@ -109,26 +111,57 @@ public class StudentAdd {
     
 }
 
+class StudentDelete {
+
+	public void delStudent(int id){
+
+
+		try {
+
+			FileReader fr = new FileReader(filepath);
+			String temp = "";
+
+			BufferedReader br = new BufferedReader(fr);
+
+			String line;
+			int linenumber;
+			Postion pos = new Position();
+			linenumber = pos.position(id);
+
+			for(int i=1; i<linenumber; i++) {
+				line = br.readLine();
+				temp += (line + "\r\n");
+
+			}
+
+			String delData = br.readLine();
+
+			while((line = br.readLine()) != null) {
+				temp += (line + "\r\n"); 
+			}
+
+			FileWriter fw = new FileWriter(filepath);
+			fw.write(temp);
+
+			fw.close();
+			br.close();
+		
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		
+		}
+	}
+
+}
+
 public class StudentUpdate {
+
 
 	public int s_pos;
 
 	public void update() {
 
-
-		}
-		case 3: {
-			StudentUpdate su = new StudentUpdate();
-			su.update();
-			break;
-		}
-		case 4: {
-			StudentView sv = new StudentView();
-            sv.ViewStudent();
-			break;
-		}
-		default: {
-			break;
 
 		Scanner sc = new Scanner(System.in);
 
@@ -183,6 +216,47 @@ public class StudentUpdate {
 
 }
 
+public class StudentView {
+        
+        
+        Scanner scan = new Scanner(System.in);
+        
+        public void ViewStudent(){
+            System.out.println("ID를 입력하세요!");
+            int ID = scan.nextInt();
+            pos posi = new pos();
+            int loc = posi.position(ID);
+            
+            String stu = null;
+            
+            FileReader f_reader = null;
+            try {
+                f_reader= new FileReader("test.txt");
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            BufferedReader b_reader = new BufferedReader(f_reader,1024);
+            int i=1;
+            
+            while(true){
+                try {
+                    stu = b_reader.readLine();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if(i == loc){
+                    System.out.println(String.valueOf(stu));
+                    break;
+                }
+                i++;
+            }
+            
+            
+    	}
+}
+
 
 
 class Position{
@@ -221,46 +295,6 @@ class Position{
 	}
 }
 
-    
-    public class StudentView {
-        
-        
-        Scanner scan = new Scanner(System.in);
-        
-        public void ViewStudent(){
-            System.out.println("ID를 입력하세요!");
-            int ID = scan.nextInt();
-            pos posi = new pos();
-            int loc = posi.position(ID);
-            
-            String stu = null;
-            
-            FileReader f_reader = null;
-            try {
-                f_reader= new FileReader("test.txt");
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            BufferedReader b_reader = new BufferedReader(f_reader,1024);
-            int i=1;
-            
-            while(true){
-                try {
-                    stu = b_reader.readLine();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                if(i == loc){
-                    System.out.println(String.valueOf(stu));
-                    break;
-                }
-                i++;
-            }
-            
-            
-        }
-    }
+
 
 
