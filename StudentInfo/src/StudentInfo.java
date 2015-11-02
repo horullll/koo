@@ -2,7 +2,11 @@
 import java.io.*;
 
 
+
+
 public class StudentInfoSys {
+
+    public static String path = ""; // 경로를 입력해 주세요
     
     public static void main(String args[]) throws IOException {
         
@@ -98,7 +102,7 @@ class WhatIsInput {
             
             int lastLine =0;
             
-            FileWriter f_writer = new FileWriter("studentinfomation.txt",true);
+            FileWriter f_writer = new FileWriter(path,true);
             BufferedWriter b_writer = new BufferedWriter(f_writer,1024);
             b_writer.write(stu);
             b_writer.write("\n");
@@ -110,7 +114,7 @@ class WhatIsInput {
             
             System.out.println("파일 읽기 결과");
             
-            FileReader f_reader2 = new FileReader("studentinfomation.txt");
+            FileReader f_reader2 = new FileReader(path);
             BufferedReader b_reader2 = new BufferedReader(f_reader2,1024);
             System.out.println("ID"+'\t'+"이름"+'\t'+"학과"+'\t'+"phoneNumber");
             while(true){
@@ -133,7 +137,7 @@ class WhatIsInput {
             
             try {
                 
-                FileReader fr = new FileReader("studentinfomation.txt");
+                FileReader fr = new FileReader(path);
                 String temp = "";
                 
                 BufferedReader br = new BufferedReader(fr);
@@ -155,7 +159,7 @@ class WhatIsInput {
                     temp += (line + "\r\n");
                 }
                 
-                FileWriter fw = new FileWriter("studentinfomation.txt");
+                FileWriter fw = new FileWriter(path);
                 fw.write(temp);
                 
                 fw.close();
@@ -192,7 +196,7 @@ class WhatIsInput {
             
             try {
                 
-                ra = new RandomAccessFile("studentinfomation.txt","rw");
+                ra = new RandomAccessFile(path,"rw");
                 String temp=null;
                 int i;
                 for (i = 1; i < s_pos; i++) {
@@ -227,7 +231,7 @@ class WhatIsInput {
                 e.printStackTrace();
             }
             
-            FileReader f_reader2 = new FileReader("studentinfomation.txt");
+            FileReader f_reader2 = new FileReader(path);
             BufferedReader b_reader2 = new BufferedReader(f_reader2,1024);
             String stu;
             System.out.println("ID"+'\t'+"이름"+'\t'+"학과"+'\t'+"phoneNumber");
@@ -262,7 +266,7 @@ class WhatIsInput {
             
             FileReader f_reader = null;
             try {
-                f_reader= new FileReader("studentinfomation.txt");
+                f_reader= new FileReader(path);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -305,7 +309,7 @@ class WhatIsInput {
                 
                 String s;
                 
-                FileReader fr = new FileReader("studentinfomation.txt"); //학생정보파일 경로 추가해줘 
+                FileReader fr = new FileReader(path); 
                 BufferedReader br = new BufferedReader(fr);
                 LineNumberReader line = new LineNumberReader(br);
                 
