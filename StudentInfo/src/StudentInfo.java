@@ -324,8 +324,8 @@ class FindStudentLine{
                 String search_id = s.split("\t")[0];
                 if(search_id.equals(Integer.toString(id))) {
                     
-                    if(s.indexOf(Integer.toString(id)) != -1) 
-                        linenumber = line.getLineNumber();   
+                    if(s.indexOf(Integer.toString(id)) != -1)
+                        linenumber = line.getLineNumber();
                     
                 }
             }
