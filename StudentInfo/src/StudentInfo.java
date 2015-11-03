@@ -4,7 +4,7 @@ import java.io.*;
 
 public class StudentInfoSys {
     
-    public static String path = "" //DB 파일 경로를 입력해 주세용
+    public static String path = "" //DB 파일 경로를 입력해 주세요오
     
     
     
